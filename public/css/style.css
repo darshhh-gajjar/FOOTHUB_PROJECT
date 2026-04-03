@@ -1,0 +1,424 @@
+/* 
+   FILA India Official Theme
+   Fonts: Poppins (Headings), Roboto (Body)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+    /* FILA Official Palette */
+    --brand-primary: #D31145;
+    /* FILA Red */
+    --brand-secondary: #002B5C;
+    /* FILA Navy */
+    --brand-accent: #f8f9fa;
+    /* Light Grey */
+
+    --text-main: #002B5C;
+    /* Navy Text */
+    --text-muted: #6c757d;
+    --text-light: #ffffff;
+
+    --bg-light: #ffffff;
+    --bg-section: #f4f4f4;
+
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    --border-color: #e5e5e5;
+    --border-radius: 0;
+    /* Sharp Edges */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.fade-in-up {
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.fw-bold,
+.btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    height: auto;
+    min-height: 80px;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: var(--brand-secondary) !important;
+    letter-spacing: 2px;
+}
+
+.navbar-brand span {
+    color: var(--brand-primary);
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--brand-secondary) !important;
+    padding: 0.5rem 1.2rem !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--brand-primary) !important;
+}
+
+/* Header Icons */
+.navbar .fas {
+    color: var(--brand-secondary);
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover .fas {
+    transform: scale(1.1);
+    color: var(--brand-primary);
+}
+
+/* Buttons */
+.btn {
+    border-radius: var(--border-radius);
+    padding: 0.8rem 2rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-danger {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #b00e3a;
+    border-color: #b00e3a;
+    transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+    color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    border-width: 2px;
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--brand-primary);
+    color: #fff;
+}
+
+.btn-dark {
+    background-color: var(--brand-secondary);
+    border-color: var(--brand-secondary);
+}
+
+.btn-dark:hover {
+    background-color: #001a38;
+    border-color: #001a38;
+}
+
+/* Cards */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.product-card {
+    border: none;
+}
+
+.product-card:hover {
+    box-shadow: none;
+    /* Clean FILA look */
+}
+
+.product-card .card-img-top {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.02);
+}
+
+/* Category Cards */
+.category-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.category-card .card-img-overlay {
+    background: linear-gradient(to top, rgba(0, 43, 92, 0.8), transparent);
+    /* Navy Gradient */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa !important;
+    color: var(--brand-secondary);
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+
+footer h5 {
+    color: var(--brand-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+footer a {
+    color: var(--text-muted) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+footer a:hover {
+    color: var(--brand-primary) !important;
+    padding-left: 5px;
+}
+
+footer hr {
+    border-color: var(--border-color);
+    opacity: 1;
+}
+
+/* Utilities */
+.text-danger {
+    color: var(--brand-primary) !important;
+}
+
+.text-primary {
+    color: var(--brand-secondary) !important;
+}
+
+.bg-danger {
+    background-color: var(--brand-primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--brand-secondary) !important;
+}
+
+.pagination .page-link {
+    color: var(--brand-secondary);
+    border: 1px solid var(--border-color);
+    margin: 0 5px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--brand-secondary);
+    border-color: var(--brand-secondary);
+    color: #fff;
+}
+
+/* Custom Utilities & Hover Effects */
+.text-navy {
+    color: var(--brand-secondary) !important;
+}
+
+.bg-navy {
+    background-color: var(--brand-secondary) !important;
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+.group-hover-zoom:hover img {
+    transform: scale(1.05);
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(211, 17, 69, 0.4);
+    /* Brand Red Shadow */
+}
+
+.btn-outline-navy {
+    color: var(--brand-secondary);
+    border-color: var(--brand-secondary);
+    background: transparent;
+}
+
+.hover-bg-navy:hover {
+    background-color: var(--brand-secondary) !important;
+    color: #fff !important;
+}
+
+
+/* Myntra Style Card */
+.myntra-card {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid transparent;
+    /* Prepare for hover border */
+}
+
+.myntra-card:hover {
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    /* Remove lift, focus on shadow/border */
+}
+
+/* Image Container */
+.myntra-card .position-relative {
+    height: 320px;
+    /* Fixed height for image area (4:3 or similar vertical aspect) */
+    width: 100%;
+    background-color: #f7f7f7;
+    /* Placeholder background */
+    display: flex;
+    align-items: flex-start;
+    /* Align images to top */
+    justify-content: center;
+}
+
+.myntra-card .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cover container without stretching */
+    object-position: top;
+    /* Focus on top of product */
+    transition: transform 0.5s ease;
+}
+
+.myntra-card:hover .card-img-top {
+    transform: scale(1.05);
+    /* Subtle zoom */
+}
+
+/* Myntra Typography */
+.myntra-card .card-body {
+    padding: 12px 10px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.myntra-card .brand-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #282c3f;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.myntra-card .product-name {
+    font-size: 14px;
+    color: #535766;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.myntra-card .price-row {
+    font-size: 14px;
+    color: #282c3f;
+    margin-top: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.myntra-card .price-row .original-price {
+    text-decoration: line-through;
+    color: #7e818c;
+    font-weight: 400;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+.myntra-card .price-row .discount-off {
+    color: #ff905a;
+    font-weight: 400;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+/* Actions Area */
+.myntra-actions {
+    background: #fff;
+    padding-top: 10px;
+    margin-top: 0;
+    opacity: 0;
+    visibility: hidden;
+    /* Hide cleanly */
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    height: 0;
+    overflow: hidden;
+}
+
+.myntra-card:hover .myntra-actions {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    height: auto;
+    padding-bottom: 5px;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 5;
+    background: #fff;
+}
+
+.myntra-card:hover .wishlist-btn {
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

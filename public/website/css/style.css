@@ -1,0 +1,80 @@
+/* Fila Brand Colors */
+:root {
+    --fila-blue: #00205B;
+    --fila-red: #E31D2B;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Navbar */
+.navbar-brand {
+    color: var(--fila-blue) !important;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.nav-link {
+    color: var(--fila-blue) !important;
+    font-size: 0.9rem;
+    padding: 0 1rem !important;
+}
+
+.nav-link:hover {
+    color: var(--fila-red) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--fila-blue);
+    border-color: var(--fila-blue);
+}
+
+.btn-primary:hover {
+    background-color: #001540;
+    border-color: #001540;
+}
+
+.btn-outline-primary {
+    color: var(--fila-blue);
+    border-color: var(--fila-blue);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--fila-blue);
+    color: white;
+}
+
+/* Cards */
+.category-card img {
+    transition: transform 0.5s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}
+
+.hover-overlay {
+    transition: background-color 0.3s ease;
+}
+
+.category-card:hover .hover-overlay {
+    background-color: rgba(0, 32, 91, 0.4) !important; /* Blue tint on hover */
+}
+
+.product-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer a:hover {
+    color: #fff !important;
+    text-decoration: underline !important;
+}

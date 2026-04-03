@@ -1,0 +1,101 @@
+/* LIGHT MODE (APPLE STYLE) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-page: #F5F5F7;
+    --bg-card: #FFFFFF;
+    --text-main: #1D1D1F;
+    --text-sec: #86868B;
+    --accent: #2997FF;
+    /* Apple Blue */
+    --hover-bg: #F5F5F7;
+    --border: #D2D2D7;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: saturate(180%) blur(20px);
+    border-right: 1px solid var(--border);
+    margin-left: -16rem;
+    width: 16rem;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    color: var(--text-main);
+    font-weight: 600;
+    padding: 2rem 1.5rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    border-radius: 10px;
+    margin: 2px 12px;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--accent);
+    color: white !important;
+}
+
+#sidebar-wrapper .list-group-item.active i {
+    color: white;
+}
+
+/* Cards & Content */
+.card,
+.p-3.bg-white {
+    background-color: var(--bg-card) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 18px !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+h2,
+h3,
+h5 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.text-muted {
+    color: var(--text-sec) !important;
+}
+
+/* Tables */
+.table thead th {
+    font-weight: 500;
+    color: var(--text-sec);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.table tbody td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #E5E5EA;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.rounded-circle {
+    border: none !important;
+}
