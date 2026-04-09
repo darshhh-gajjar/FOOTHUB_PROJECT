@@ -1,23 +1,34 @@
-FROM php:8.2-cli
+FROM php:8.4-apache
+
 
 RUN apt-get update && apt-get install -y \
-    unzip git curl libzip-dev zip nodejs npm \
-    && docker-php-ext-install zip
+    git curl zip unzip libonig-dev libxml2-dev libzip-dev
+
+
+RUN docker-php-ext-install pdo pdo_mysql zip
+
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+
 WORKDIR /var/www
+
 
 COPY . .
 
-# ❗ IMPORTANT: yaha se || true hata
+
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
+
 RUN npm install && npm run build || true
+
+
+RUN a2enmod rewrite
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
 
 RUN cp .env.example .env || true
 RUN php artisan key:generate || true
 
-EXPOSE 10000
-
-CMD php artisan serve --host=0.0.0.0 --port=10000
+EXPOSE 80
+CMD ["apache2-foreground"]
