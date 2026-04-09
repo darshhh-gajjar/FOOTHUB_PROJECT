@@ -47,14 +47,14 @@
 
         const verifyPayment = async (razorpayResponse) => {
             try {
-                const response = await fetch("{{ route('payment.verify') }}", {
+                const response = await fetch()"{{ route('payment.verify') }}", 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                     },
                     body: JSON.stringify(razorpayResponse)
-                });
+                };
                 
                 const result = await response.json();
                 

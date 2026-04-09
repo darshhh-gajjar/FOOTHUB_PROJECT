@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PaymentController;
 
 
 // Web Pages
@@ -113,9 +114,13 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/add-to-cart', [CartController::class, 'store'])->name('cart.store');
 Route::post('/remove-from-cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
-Route::get('/checkout', function () {
-    return view('website.checkout');
-})->name('checkout');
+Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+Route::post('/payment/order/create', [PaymentController::class, 'createOrder'])->name('payment.order.create');
+Route::post('/payment/verify', [PaymentController::class, 'verifyPayment'])->name('payment.verify');
+Route::get('/payment/success', function () {
+    return view('payment.success');
+})->name('payment.success');
+Route::post('/payment/webhook', [PaymentController::class, 'webhook'])->name('payment.webhook');
 
 Route::get('/product/{id?}', function ($id = null) {
     if (!$id) return redirect()->route('home');
