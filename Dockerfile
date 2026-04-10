@@ -13,8 +13,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
+COPY . /var/www
 
-COPY . .
+
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/public|g' /etc/apache2/sites-available/000-default.conf
+
+RUN a2enmod rewrite
 
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
