@@ -33,5 +33,6 @@ RUN php artisan cache:clear
 
 EXPOSE 80
 
+RUN php artisan key:generate || true
 RUN php artisan config:clear
-RUN php artisan cache:clear
+RUN php artisan cache:clear || true
