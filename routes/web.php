@@ -20,55 +20,37 @@ Route::get('/', function () {
 
 
 Route::get('/', function () {
-    $products = \App\Models\product::where('status', 'Active')->latest()->take(8)->get();
+    $products = collect([]);
     return view('website.index', compact('products'));
 })->name('home');
 
 Route::get('/men', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Men')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.men', compact('products'));
 })->name('men');
 
 Route::get('/women', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Women')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.women', compact('products'));
 })->name('women');
 
 Route::get('/kids', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Kids')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.kids', compact('products'));
 })->name('kids');
 
 Route::get('/tennis', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Tennis')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.tennis', compact('products'));
 })->name('tennis');
 
 Route::get('/heritage', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Heritage')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.heritage', compact('products'));
 })->name('heritage');
 
 Route::get('/sale', function () {
-    // For sale we might just fetch all discounted items. For now we will check categories.name = 'Sale' or products with Sale price.
-    $products = \App\Models\product::whereNotNull('mrp')->whereColumn('mrp', '>', 'sale_price')
-        ->where('products.status', 'Active')
-        ->select('products.*')->get();
+    $products = collect([]);
     return view('website.sale', compact('products'));
 })->name('sale');
 
@@ -114,6 +96,8 @@ Route::get('/my-addresses', function () {
     return view('website.addresses');
 })->name('my.addresses');
 
+// If WishlistController/CartController/PaymentController hit the DB, we shouldn't change the routes map, but accessing them might fail. 
+// The user asked to remove "all database queries from routes/web.php" specifically.
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::post('/add-to-wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
 Route::post('/remove-from-wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
@@ -132,16 +116,18 @@ Route::post('/payment/webhook', [PaymentController::class, 'webhook'])->name('pa
 
 Route::get('/product/{id?}', function ($id = null) {
     if (!$id) return redirect()->route('home');
-    $product = \App\Models\product::leftJoin('categories', 'products.category_id', '=', 'categories.id')
-        ->where('products.id', $id)
-        ->select('products.*', 'categories.name as category_name')
-        ->firstOrFail();
-        
-    $related_products = \App\Models\product::where('category_id', $product->category_id)
-        ->where('id', '!=', $product->id)
-        ->where('status', 'Active')
-        ->take(4)
-        ->get();
+    
+    // Mocking an empty product to prevent DB queries but allow UI string representation
+    $product = new \App\Models\product();
+    $product->id = $id;
+    $product->name = 'Demo Product';
+    $product->price = 1000;
+    $product->sale_price = 800;
+    $product->description = 'A demonstration product for UI testing.';
+    $product->category_name = 'Demo Category';
+    $product->image = ''; // Can be an empty string or placeholder
+
+    $related_products = collect([]);
         
     return view('website.product-detail', compact('product', 'related_products'));
 })->name('product.detail');
@@ -172,44 +158,32 @@ Route::get('/admin/admin_dashboard', function () {
 })->name('admin.admin_dashboard');
 
 Route::get('/admin/admin_men', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Men')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_men', compact('products'));
 })->name('admin.admin_men');
 
 Route::get('/admin/admin_women', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Women')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_women', compact('products'));
 })->name('admin.admin_women');
 
 Route::get('/admin/admin_kids', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Kids')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_kids', compact('products'));
 })->name('admin.admin_kids');
 
 Route::get('/admin/admin_tennis', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Tennis')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_tennis', compact('products'));
 })->name('admin.admin_tennis');
 
 Route::get('/admin/admin_heritage', function () {
-    $products = \App\Models\product::join('categories', 'products.category_id', '=', 'categories.id')
-        ->where('categories.name', 'Heritage')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_heritage', compact('products'));
 })->name('admin.admin_heritage');
 
 Route::get('/admin/admin_sale', function () {
-    $products = \App\Models\product::leftJoin('categories', 'products.category_id', '=', 'categories.id')
-        ->whereNotNull('mrp')->whereColumn('mrp', '>', 'sale_price')
-        ->select('products.*', 'categories.name as category_name')->get();
+    $products = collect([]);
     return view('admin.admin_sale', compact('products'));
 })->name('admin.admin_sale');
 
@@ -265,14 +239,3 @@ Route::get('/admin/login', function () {
 
 // Admin Reports (Must keep controller for functionality)
 Route::get('/admin/admin_contact_reports', [ContactController::class, 'show'])->name('admin.admin_contact_reports');
-
-
-
-
-
-
-
-
-
-
-

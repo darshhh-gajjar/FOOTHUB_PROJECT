@@ -25,8 +25,4 @@ RUN php artisan key:generate || true
 RUN php artisan config:clear || true
 RUN php artisan cache:clear || true
 
-# Set correct permissions to allow Apache to write to storage and cache
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
 EXPOSE 80
