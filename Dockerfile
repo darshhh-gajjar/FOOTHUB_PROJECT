@@ -20,6 +20,8 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/public|g' /etc/ap
 
 RUN a2enmod rewrite
 
+RUN php artisan migrate --force || true
+
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
