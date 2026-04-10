@@ -17,7 +17,8 @@ RUN a2enmod rewrite
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-
+RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Laravel setup (SAFE)
 RUN cp .env.example .env || true
