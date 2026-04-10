@@ -32,3 +32,6 @@ RUN php artisan cache:clear
 
 
 EXPOSE 80
+
+RUN php artisan config:clear
+RUN php artisan cache:clear
