@@ -11,6 +11,14 @@ use App\Http\Controllers\PaymentController;
 
 
 // Web Pages
+
+
+Route::get('/', function () {
+    return view('website.index');
+});
+
+
+
 Route::get('/', function () {
     $products = \App\Models\product::where('status', 'Active')->latest()->take(8)->get();
     return view('website.index', compact('products'));
